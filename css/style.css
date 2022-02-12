@@ -35,13 +35,18 @@
 .intrest{
     padding: 2%;
 }
+.btn{
+    margin-left: 70%;
+}
 a:visited{
     color: black;
 }
 a:link{
     color:black;
 }
-
+html {
+    scroll-behavior: smooth;
+}
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {}
 
@@ -70,14 +75,19 @@ a:link{
     }
     .intrest-div{
         flex-direction: row;
+        align-items: center;
+        justify-content:space-evenly;
     }
     .intrest{
         padding-right: 9%;
+        width: auto;
     }
     .form{
         margin-left: 3%;
         width: 60%;
-        align-items: center;
+    }
+    .btn{
+        margin-left: 85%;
     }
 }
 
@@ -92,6 +102,7 @@ a:link{
 }
 
 ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(255,255,255,0.3);
     -webkit-box-shadow: inset 0 0 6px rgba(255,255,255,0.3);
     border-radius: 3px;
 }
