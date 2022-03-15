@@ -2,7 +2,6 @@
     padding-top: 1%;
     margin-left: 12%;
 }
-
 .pfp{
     border-radius: 90%;
 }
@@ -25,6 +24,9 @@
     flex-direction: column;
     align-items: center;
 }
+.intrest{
+    padding: 2%;
+}
 .intrest-div{
     display: flex;
     flex-direction: column;
@@ -32,16 +34,13 @@
 .form{
     margin-left: 1%;
 }
-.intrest{
-    padding: 2%;
-}
 .btn{
     margin-left: 70%;
 }
-a:visited{
+.url:visited{
     color: black;
 }
-a:link{
+.url:link{
     color:black;
 }
 html {
@@ -54,7 +53,7 @@ html {
 @media only screen and (min-width: 600px) {}
 
 /* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 925px) {
     .pfp-class{
         margin-left: 2%;
         float: left;
@@ -70,16 +69,13 @@ html {
     .skill{
         margin-left: 2%;
     }
-    .card.horizontal{
-        width: 150%;
-    }
     .intrest-div{
         flex-direction: row;
         align-items: center;
         justify-content:space-evenly;
     }
     .intrest{
-        padding-right: 9%;
+        padding: 2%;
         width: auto;
     }
     .form{
@@ -92,7 +88,11 @@ html {
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {}
+@media only screen and (min-width: 992px) {
+    .intrest{
+        padding: 1%;
+    }
+}
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {}
