@@ -4,6 +4,8 @@
 }
 .pfp{
     border-radius: 90%;
+    width: 256px;
+    height: 256px;
 }
 .intro-text{
     font-weight: lighter;
