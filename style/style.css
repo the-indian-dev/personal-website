@@ -1,0 +1,75 @@
+.noto-serif-bengali {
+    font-family: "Noto Serif Bengali", serif;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+}
+.top {
+    padding-top: 3em;
+}
+.name {
+    background: #8a2387; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #f27121, #e94057, #8a2387);
+    background: linear-gradient(to left, #f27121, #e94057, #8a2387);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+}
+.emf {
+    background: #283c86; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #45a247, #283c86);
+    background: linear-gradient(to left, #45a247, #283c86);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+}
+
+html {
+    background-image: url("/assets/durga.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: right top;
+    background-size: 30%;
+}
+
+.social-media {
+    font-size: 30px;
+    text-decoration: none;
+    margin-left: 5%;
+}
+
+.main-intro {
+    height: 5em;
+}
+
+.uil {
+    color: black;
+    padding-left: 1%;
+}
+
+[data-theme="dark"],
+.uil {
+    color: white;
+}
+
+@media all and (min-width: 0px) and (max-width: 959px) {
+    /* Tablets and stuff. Disable excessive padding */
+    .top {
+        padding-top: 0em;
+    }
+    html {
+        background-image: url();
+    }
+    .uil {
+        padding-left: 10%;
+        font-size: 40px;
+    }
+    .main-intro {
+        height: 8em;
+    }
+}
