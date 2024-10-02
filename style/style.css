@@ -29,12 +29,13 @@
     -moz-text-fill-color: transparent;
 }
 
-html {
+.page-1 {
     background-image: url("/assets/durga.png");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: right top;
     background-size: 30%;
+    height: 100vh;
 }
 
 .social-media {
@@ -45,6 +46,21 @@ html {
 
 .main-intro {
     height: 5em;
+}
+
+.lis-item {
+    padding-bottom: 0.5%;
+}
+
+.page-2 {
+    display: flex;
+    justify-content: center;
+}
+
+.emoji {
+    font-family: "Noto Color Emoji", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .uil {
@@ -62,8 +78,11 @@ html {
     .top {
         padding-top: 0em;
     }
-    html {
-        background-image: url();
+    .page-1 {
+        background-size: 100%;
+    }
+    .page-2 {
+        flex-direction: column;
     }
     .uil {
         padding-left: 10%;
