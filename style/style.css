@@ -30,7 +30,7 @@
 }
 
 .page-1 {
-    background-image: url("/assets/durga.webp");
+    background-image: url("/assets/durga-mobile.webp");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: right top;
@@ -71,7 +71,11 @@
 .uil {
     color: white;
 }
-
+@media all and (min-width: 960px) {
+    .page-1 {
+        background-image: url("/assets/durga.webp");
+    }
+}
 @media all and (min-width: 0px) and (max-width: 959px) {
     /* Tablets and stuff. Disable excessive padding */
     .top {
