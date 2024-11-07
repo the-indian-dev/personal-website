@@ -6,7 +6,7 @@
     font-variation-settings: "wdth" 100;
 }
 .top {
-    padding-top: 3em;
+    padding-top: 2em;
 }
 .name {
     background: #8a2387; /* fallback for old browsers */
@@ -38,14 +38,24 @@
     height: 100vh;
 }
 
+.hello {
+    font-size: 4em;
+}
+
 .social-media {
-    font-size: 30px;
+    font-size: 35px;
     text-decoration: none;
     margin-left: 5%;
+    display: flex;
+}
+
+.social-media-icon {
+    margin-right: 0.5em;
 }
 
 .main-intro {
     height: 5em;
+    font-size: 2.5em;
 }
 
 .lis-item {
@@ -78,6 +88,17 @@
 }
 @media all and (min-width: 0px) and (max-width: 959px) {
     /* Tablets and stuff. Disable excessive padding */
+    .hello {
+        font-size: 3em;
+    }
+    .social-media {
+        font-size: 30px;
+        margin-left: 0%;
+        justify-content: center;
+    }
+    .social-media-icon {
+        margin: 2vh;
+    }
     .top {
         padding-top: 0em;
     }
@@ -93,5 +114,6 @@
     }
     .main-intro {
         height: 8em;
+        font-size: 2em;
     }
 }
