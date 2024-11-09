@@ -9,9 +9,9 @@
     padding-top: 2em;
 }
 .name {
-    background: #8a2387; /* fallback for old browsers */
-    background: -webkit-linear-gradient(to left, #f27121, #e94057, #8a2387);
-    background: linear-gradient(to left, #f27121, #e94057, #8a2387);
+    background: #c6ffdd; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #f7797d, #fbd786, #c6ffdd);
+    background: linear-gradient(to right, #f7797d, #fbd786, #c6ffdd);
     background-size: 100%;
     -webkit-background-clip: text;
     -moz-background-clip: text;
@@ -19,9 +19,9 @@
     -moz-text-fill-color: transparent;
 }
 .emf {
-    background: #283c86; /* fallback for old browsers */
-    background: -webkit-linear-gradient(to left, #45a247, #283c86);
-    background: linear-gradient(to left, #45a247, #283c86);
+    background: #06beb6; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #48b1bf, #06beb6);
+    background: linear-gradient(to right, #48b1bf, #06beb6);
     background-size: 100%;
     -webkit-background-clip: text;
     -moz-background-clip: text;
@@ -85,6 +85,17 @@
     .page-1 {
         background-image: url("/assets/durga.webp");
     }
+    ::-webkit-scrollbar {
+        height: 50px;
+        width: 5px;
+        background: #000;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #4a4a4a;
+        -webkit-border-radius: 1ex;
+        -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+    }
 }
 @media all and (min-width: 0px) and (max-width: 959px) {
     /* Tablets and stuff. Disable excessive padding */
@@ -93,11 +104,13 @@
     }
     .social-media {
         font-size: 30px;
-        margin-left: 0%;
+        margin: 0%;
+        width: 100%;
         justify-content: center;
     }
     .social-media-icon {
         margin: 2vh;
+        padding-right: 2vh;
     }
     .top {
         padding-top: 0em;
