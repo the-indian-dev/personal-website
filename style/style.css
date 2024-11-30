@@ -10,8 +10,8 @@
 }
 .name {
     background: #c6ffdd; /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #f7797d, #fbd786, #c6ffdd);
-    background: linear-gradient(to right, #f7797d, #fbd786, #c6ffdd);
+    background: -webkit-linear-gradient(to right, #ff0000, #ffc107);
+    background: linear-gradient(90deg, #ff0000, #ffc107);
     background-size: 100%;
     -webkit-background-clip: text;
     -moz-background-clip: text;
@@ -20,8 +20,8 @@
 }
 .emf {
     background: #06beb6; /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #48b1bf, #06beb6);
-    background: linear-gradient(to right, #48b1bf, #06beb6);
+    background: -webkit-linear-gradient(to right, #36d1dc, #5b86e5);
+    background: linear-gradient(90deg, #36d1dc, #5b86e5);
     background-size: 100%;
     -webkit-background-clip: text;
     -moz-background-clip: text;
