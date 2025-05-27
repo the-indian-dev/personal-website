@@ -6,15 +6,18 @@ const { PurgeCSSPlugin } = require('purgecss-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const glob = require('glob');
 
+
 module.exports = {
   entry: {
     main: './js/script.js',
     styles: ['./style/style.css', './style/bulma.min.css']
   },
   output: {
-    filename: 'js/[name].[contenthash].js',
+    filename: 'js/[name].[contenthash:8].js',
+    chunkFilename: 'js/[name].[contenthash:8].chunk.js',
     path: path.resolve(__dirname, 'dist'),
-    clean: true, // Clean the dist folder before each build
+    clean: true,
+    publicPath: '/',
   },
   mode: 'production', // Use production mode for minification and optimizations
   module: {
@@ -30,13 +33,25 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'style/[name].[contenthash].css',
+      filename: 'style/[name].[contenthash:8].css',
+      chunkFilename: 'style/[id].[contenthash:8].css',
     }),
     new HtmlWebpackPlugin({
       template: './index.html',
       filename: 'index.html',
-      inject: true, // Inject assets automatically
-      scriptLoading: 'blocking',
+      inject: true,
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true,
+      },
     }),
     new PurgeCSSPlugin({
       paths: glob.sync(`${path.join(__dirname, '**/*')}`, { nodir: true }),
@@ -52,17 +67,42 @@ module.exports = {
     }),
     new CopyWebpackPlugin({
       patterns: [
-        { from: 'assets', to: 'assets' },
+        { 
+          from: 'assets', 
+          to: 'assets',
+          globOptions: {
+            ignore: ['**/.DS_Store'],
+          },
+        },
         { from: 'img', to: 'img' },
         { from: 'favicon.ico', to: 'favicon.ico' },
         { from: 'robots.txt', to: 'robots.txt' },
+        { from: 'sw.js', to: 'sw.js' },
+        { from: 'manifest.json', to: 'manifest.json' },
       ],
     }),
+
   ],
   optimization: {
     splitChunks: {
       chunks: 'all',
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+          priority: 20,
+        },
+        common: {
+          name: 'common',
+          minChunks: 2,
+          chunks: 'all',
+          priority: 10,
+          reuseExistingChunk: true,
+        },
+      },
     },
+    runtimeChunk: 'single',
     minimize: true,
     minimizer: [
       '...', // Keep default JS minimizer (Terser)
@@ -74,8 +114,8 @@ module.exports = {
               discardComments: { removeAll: true },
               normalizeWhitespace: true,
               cssDeclarationSorter: true,
-              mergeRules: false,
-              mergeSemantically: false,
+              mergeRules: true,
+              mergeSemantically: true,
             },
           ],
         },

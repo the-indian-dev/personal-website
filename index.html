@@ -4,15 +4,125 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Ritabrata Das(@theindiandev)</title>
-        <link rel="stylesheet" href="style/bulma.min.css" />
-        <link rel="stylesheet" href="style/style.css" />
+        
+        <!-- Critical resource preloads -->
+        <link rel="preload" href="assets/durga.webp" as="image" media="(min-width: 960px)" />
+        <link rel="preload" href="assets/durga-mobile.webp" as="image" media="(max-width: 959px)" />
+        <link rel="preload" href="assets/wave.webp" as="image" />
+        <link rel="preload" href="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js" as="script" />
+        
+        <!-- DNS prefetch for external resources -->
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+        <link rel="dns-prefetch" href="https://unicons.iconscout.com" />
+        <link rel="dns-prefetch" href="https://unpkg.com" />
+        
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
             href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@900&display=swap"
             rel="stylesheet"
         />
-        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+        
+        <!-- Critical CSS inline for above-the-fold content -->
+        <style>
+            .noto-serif-bengali {
+                font-family: "Noto Serif Bengali", serif;
+                font-optical-sizing: auto;
+                font-weight: 900;
+                font-style: normal;
+                font-variation-settings: "wdth" 100;
+            }
+            .top { padding-top: 2em; }
+            .name {
+                background: #c6ffdd;
+                background: -webkit-linear-gradient(to right, #ff0000, #ffc107);
+                background: linear-gradient(90deg, #ff0000, #ffc107);
+                background-size: 100%;
+                -webkit-background-clip: text;
+                -moz-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                -moz-text-fill-color: transparent;
+            }
+            .emf {
+                background: #06beb6;
+                background: -webkit-linear-gradient(to right, #36d1dc, #5b86e5);
+                background: linear-gradient(90deg, #36d1dc, #5b86e5);
+                background-size: 100%;
+                -webkit-background-clip: text;
+                -moz-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                -moz-text-fill-color: transparent;
+            }
+            .page-1 {
+                background-image: url("/assets/durga-mobile.webp");
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-position: right top;
+                background-size: 30%;
+                height: 100vh;
+            }
+            .social-media {
+                font-size: 35px;
+                text-decoration: none;
+                margin-left: 5%;
+                display: flex;
+            }
+            .social-media-icon { margin-right: 0.5em; }
+            .main-intro {
+                height: 5em;
+                font-size: 2.5em;
+            }
+            .uil { color: black; padding-left: 1%; }
+            [data-theme="dark"], .uil { color: white; }
+            @media all and (min-width: 960px) {
+                .page-1 { background-image: url("/assets/durga.webp"); }
+            }
+            @media all and (min-width: 0px) and (max-width: 959px) {
+                .hello { font-size: 3em; }
+                .social-media {
+                    font-size: 30px;
+                    margin: 0%;
+                    width: 100%;
+                    justify-content: center;
+                }
+                .social-media-icon {
+                    margin: 2vh;
+                    padding-right: 2vh;
+                }
+                .top { padding-top: 0em; }
+                .page-1 { background-size: 100%; }
+                .uil {
+                    padding-left: 10%;
+                    font-size: 40px;
+                }
+                .main-intro {
+                    height: 8em;
+                    font-size: 2em;
+                }
+            }
+            /* Hide page-2 initially for faster loading */
+            .page-2 { 
+                display: none; 
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.5s ease-in, transform 0.5s ease-in;
+            }
+            .page-2.visible { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        </style>
+        
+        <!-- Non-critical CSS loaded asynchronously -->
+        <link rel="preload" href="style/bulma.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+        <noscript><link rel="stylesheet" href="style/bulma.min.css" /></noscript>
+        <link rel="preload" href="style/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+        <noscript><link rel="stylesheet" href="style/style.css" /></noscript>
+        
+        <!-- Load icons after critical content -->
+        <link rel="preload" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+        <noscript><link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" /></noscript>
 
         <meta name="title" content="@the-indian-dev's website" />
         <meta
@@ -46,6 +156,23 @@
                 y.parentNode.insertBefore(t, y);
             })(window, document, "clarity", "script", "b1bzrklk6k");
         </script>
+        <!-- Service Worker Registration -->
+        <script>
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                    navigator.serviceWorker.register('/sw.js')
+                        .then(function(registration) {
+                            console.log('ServiceWorker registration successful');
+                        })
+                        .catch(function(err) {
+                            console.log('ServiceWorker registration failed');
+                        });
+                });
+            }
+        </script>
+        <!-- PWA Manifest -->
+        <link rel="manifest" href="/manifest.json" />
+        
         <!-- Microsoft Bing Verification-->
         <meta name="msvalidate.01" content="28796ADCC5E5816CBDEDAD851C9F4783" />
     </head>
@@ -55,7 +182,7 @@
                 <span class="title level-left top is-mobile" style="font-size: 4em">
                     Hello There!
                     <figure class="image is-64x64 is-mobile">
-                        <img src="assets/wave.webp" alt="Hand waving animation" />
+                        <img src="assets/wave.webp" alt="Hand waving animation" decoding="async" />
                     </figure>
                 </span>
             </div>
@@ -96,7 +223,7 @@
                     <span class="title level-left top is-mobile" style="font-size: 3em">
                         About Me
                         <figure class="image is-48x48 is-mobile">
-                            <img src="assets/emoji.webp" alt="Thinking Emoji" loading="lazy" />
+                            <img src="assets/emoji.webp" alt="Thinking Emoji" loading="lazy" decoding="async" />
                         </figure>
                     </span>
                 </div>
@@ -121,6 +248,7 @@
                             alt="Gaming Icon"
                             style="height: 50px; width: 50px"
                             loading="lazy"
+                            decoding="async"
                         />
                     </span>
                 </div>
@@ -138,9 +266,9 @@
         <footer class="footer">
             <div class="content has-text-centered">
                 <span>
-                    <img src="/assets/om.webp" alt="Om" class="emoji" loading="lazy" />
-                    <img src="/assets/flag.webp" alt="Indian flag" class="emoji" loading="lazy" />
-                    <img src="/assets/heart.webp" alt="Heart" class="emoji" loading="lazy" />
+                    <img src="/assets/om.webp" alt="Om" class="emoji" loading="lazy" decoding="async" />
+                    <img src="/assets/flag.webp" alt="Indian flag" class="emoji" loading="lazy" decoding="async" />
+                    <img src="/assets/heart.webp" alt="Heart" class="emoji" loading="lazy" decoding="async" />
                 </span>
                 <br />
                 <span>Did I mention that I use Arch, BTW!</span>
@@ -149,6 +277,7 @@
                 >Mastodon</a
             >
         </footer>
+        <!-- Load typing animation immediately -->
         <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
         <script src="js/script.js"></script>
     </body>
