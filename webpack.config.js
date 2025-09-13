@@ -15,6 +15,7 @@ module.exports = {
   output: {
     filename: 'js/[name].[contenthash:8].js',
     chunkFilename: 'js/[name].[contenthash:8].chunk.js',
+    assetModuleFilename: 'assets/[name].[contenthash:8][ext]',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
     publicPath: '/',
@@ -77,13 +78,12 @@ module.exports = {
         { from: 'img', to: 'img' },
         { from: 'favicon.ico', to: 'favicon.ico' },
         { from: 'robots.txt', to: 'robots.txt' },
-        { from: 'sw.js', to: 'sw.js' },
-        { from: 'manifest.json', to: 'manifest.json' },
       ],
     }),
 
   ],
   optimization: {
+    moduleIds: 'deterministic',
     splitChunks: {
       chunks: 'all',
       cacheGroups: {

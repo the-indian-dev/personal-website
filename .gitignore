@@ -1,2 +1,7 @@
 node_modules/
 dist/
+.kiro/
+.vscode/
+CACHING_GUIDE.md
+nginx.conf.example
+

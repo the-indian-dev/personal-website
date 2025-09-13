@@ -176,8 +176,6 @@
         <!-- Windows Phone -->
         <meta name="msapplication-navbutton-color" content="#941b1b" />
         <!-- iOS Safari -->
-        <meta name="apple-mobile-web-app-status-bar-style" content="#" />
-        <meta name="mobile-web-app-capable" content="no" />
         <meta name="format-detection" content="telephone=no" />
         <!-- Not sus -->
         <!-- Microsoft Clarity -->
@@ -195,23 +193,7 @@
                 y.parentNode.insertBefore(t, y);
             })(window, document, "clarity", "script", "b1bzrklk6k");
         </script>
-        <!-- Service Worker Registration -->
-        <script>
-            if ("serviceWorker" in navigator) {
-                window.addEventListener("load", function () {
-                    navigator.serviceWorker
-                        .register("/sw.js")
-                        .then(function (registration) {
-                            console.log("ServiceWorker registration successful");
-                        })
-                        .catch(function (err) {
-                            console.log("ServiceWorker registration failed");
-                        });
-                });
-            }
-        </script>
-        <!-- PWA Manifest -->
-        <link rel="manifest" href="/manifest.json" />
+
 
         <!-- Microsoft Bing Verification-->
         <meta name="msvalidate.01" content="28796ADCC5E5816CBDEDAD851C9F4783" />
