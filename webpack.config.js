@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { PurgeCSSPlugin } = require('purgecss-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const BeastiesPlugin = require('beasties-webpack-plugin');
 const glob = require('glob');
 
 
@@ -79,6 +80,22 @@ module.exports = {
         { from: 'favicon.ico', to: 'favicon.ico' },
         { from: 'robots.txt', to: 'robots.txt' },
       ],
+    }),
+    new BeastiesPlugin({
+      // Inline critical CSS and lazy-load the rest
+      preload: 'swap',
+      // Remove inlined styles from external stylesheets
+      pruneSource: true,
+      // Compress the inlined critical CSS
+      compress: true,
+      // Log which rules are inlined
+      logLevel: 'info',
+      // Fonts handling
+      fonts: true,
+      // External stylesheets handling
+      external: true,
+      // Inline styles handling
+      inlineThreshold: 0,
     }),
 
   ],

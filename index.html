@@ -10,129 +10,28 @@
         <link rel="preload" href="assets/durga-mobile.webp" as="image" media="(max-width: 959px)" />
         <link rel="preload" href="assets/wave.webp" as="image" />
         <link rel="preload" href="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js" as="script" />
+        <link rel="preload" href="https://unicons.iconscout.com" />
 
         <!-- DNS prefetch for external resources -->
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-        <link rel="dns-prefetch" href="https://unicons.iconscout.com" />
         <link rel="dns-prefetch" href="https://unpkg.com" />
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@900&display=swap"
-            rel="stylesheet"
-        />
+	
+	<!-- Bengali font is not above the fold content -->
+	<link
+		rel="preload"
+		href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@900&display=swap"
+		as="style"
+		onload="this.onload=null;this.rel='stylesheet'">
 
-        <!-- Critical CSS inline for above-the-fold content -->
-        <style>
-            .noto-serif-bengali {
-                font-family: "Noto Serif Bengali", serif;
-                font-optical-sizing: auto;
-                font-weight: 900;
-                font-style: normal;
-                font-variation-settings: "wdth" 100;
-            }
-            .top {
-                padding-top: 2em;
-            }
-            .name {
-                background: #c6ffdd;
-                background: -webkit-linear-gradient(to right, #ff0000, #ffc107);
-                background: linear-gradient(90deg, #ff0000, #ffc107);
-                background-size: 100%;
-                -webkit-background-clip: text;
-                -moz-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                -moz-text-fill-color: transparent;
-            }
-            .emf {
-                background: #06beb6;
-                background: -webkit-linear-gradient(to right, #36d1dc, #5b86e5);
-                background: linear-gradient(90deg, #36d1dc, #5b86e5);
-                background-size: 100%;
-                -webkit-background-clip: text;
-                -moz-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                -moz-text-fill-color: transparent;
-            }
-            .page-1 {
-                background-image: url("/assets/durga-mobile.webp");
-                background-repeat: no-repeat;
-                background-attachment: fixed;
-                background-position: right top;
-                background-size: 30%;
-                height: 100vh;
-            }
-            .social-media {
-                font-size: 35px;
-                text-decoration: none;
-                margin-left: 5%;
-                display: flex;
-            }
-            .social-media-icon {
-                margin-right: 0.5em;
-            }
-            .main-intro {
-                height: 5em;
-                font-size: 2.5em;
-            }
-            .uil {
-                color: black;
-                padding-left: 1%;
-            }
-            [data-theme="dark"],
-            .uil {
-                color: white;
-            }
-            @media all and (min-width: 960px) {
-                .page-1 {
-                    background-image: url("/assets/durga.webp");
-                }
-            }
-            @media all and (min-width: 0px) and (max-width: 959px) {
-                .hello {
-                    font-size: 3em;
-                }
-                .social-media {
-                    font-size: 30px;
-                    margin: 0%;
-                    width: 100%;
-                    justify-content: center;
-                }
-                .social-media-icon {
-                    margin: 2vh;
-                    padding-right: 2vh;
-                }
-                .top {
-                    padding-top: 0em;
-                }
-                .page-1 {
-                    background-size: 100%;
-                }
-                .uil {
-                    padding-left: 10%;
-                    font-size: 40px;
-                }
-                .main-intro {
-                    height: 8em;
-                    font-size: 2em;
-                }
-            }
-            /* Hide page-2 initially for faster loading */
-            .page-2 {
-                display: none;
-                opacity: 0;
-                transform: translateY(20px);
-                transition:
-                    opacity 0.5s ease-in,
-                    transform 0.5s ease-in;
-            }
-            .page-2.visible {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        </style>
+	<noscript>
+	    <link
+	    rel="stylesheet"
+	    href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@900&display=swap">
+	</noscript>
 
         <!-- Non-critical CSS loaded asynchronously -->
         <link
