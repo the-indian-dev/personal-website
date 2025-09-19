@@ -1,4 +1,110 @@
-/* Critical CSS moved to inline styles for faster loading */
+.noto-serif-bengali {
+    font-family: "Noto Serif Bengali", serif;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+}
+.top {
+    padding-top: 2em;
+}
+.name {
+    background: #c6ffdd;
+    background: -webkit-linear-gradient(to right, #ff0000, #ffc107);
+    background: linear-gradient(90deg, #ff0000, #ffc107);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+}
+.emf {
+    background: #06beb6;
+    background: -webkit-linear-gradient(to right, #36d1dc, #5b86e5);
+    background: linear-gradient(90deg, #36d1dc, #5b86e5);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+}
+.page-1 {
+    background-image: url("/assets/durga-mobile.webp");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: right top;
+    background-size: 30%;
+    height: 100vh;
+}
+.social-media {
+    font-size: 35px;
+    text-decoration: none;
+    margin-left: 5%;
+    display: flex;
+}
+.social-media-icon {
+    margin-right: 0.5em;
+}
+.main-intro {
+    height: 5em;
+    font-size: 2.5em;
+}
+.uil {
+    color: black;
+    padding-left: 1%;
+}
+[data-theme="dark"],
+.uil {
+    color: white;
+}
+@media all and (min-width: 960px) {
+    .page-1 {
+        background-image: url("/assets/durga.webp");
+    }
+}
+@media all and (min-width: 0px) and (max-width: 959px) {
+    .hello {
+        font-size: 3em;
+    }
+    .social-media {
+        font-size: 30px;
+        margin: 0%;
+        width: 100%;
+        justify-content: center;
+    }
+    .social-media-icon {
+        margin: 2vh;
+        padding-right: 2vh;
+    }
+    .top {
+        padding-top: 0em;
+    }
+    .page-1 {
+        background-size: 100%;
+    }
+    .uil {
+        padding-left: 10%;
+        font-size: 40px;
+    }
+    .main-intro {
+        height: 8em;
+        font-size: 2em;
+    }
+}
+
+/* Hide page-2 initially for faster loading */
+.page-2 {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+        opacity 0.5s ease-in,
+        transform 0.5s ease-in;
+}
+.page-2.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
 
 .waving-hand {
     font-size: 4em;

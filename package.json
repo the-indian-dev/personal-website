@@ -3,6 +3,7 @@
     "build": "webpack --config webpack.config.js"
   },
   "devDependencies": {
+    "beasties-webpack-plugin": "^0.3.5",
     "copy-webpack-plugin": "^13.0.0",
     "css-loader": "^7.1.2",
     "css-minimizer-webpack-plugin": "^7.0.2",
