@@ -1,235 +1,66 @@
-<!doctype html>
-<html lang="en" data-theme="dark">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Ritabrata Das(@theindiandev)</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ritabrata Das</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
 
-        <!-- Critical resource preloads -->
-        <link rel="preload" href="assets/durga.webp" as="image" media="(min-width: 960px)" />
-        <link rel="preload" href="assets/durga-mobile.webp" as="image" media="(max-width: 959px)" />
-        <link rel="preload" href="assets/wave.webp" as="image" />
-        <link rel="preload" href="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js" as="script" />
-        <link rel="preload" href="https://unicons.iconscout.com" />
-
-        <!-- DNS prefetch for external resources -->
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-        <link rel="dns-prefetch" href="https://unpkg.com" />
-
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-	
-	<!-- Bengali font is not above the fold content -->
-	<link
-		rel="preload"
-		href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@900&display=swap"
-		as="style"
-		onload="this.onload=null;this.rel='stylesheet'">
-
-	<noscript>
-	    <link
-	    rel="stylesheet"
-	    href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@900&display=swap">
-	</noscript>
-
-        <!-- Non-critical CSS loaded asynchronously -->
-        <link
-            rel="preload"
-            href="style/bulma.min.css"
-            as="style"
-            onload="this.onload=null;this.rel='stylesheet'"
-        />
-        <noscript><link rel="stylesheet" href="style/bulma.min.css" /></noscript>
-        <link
-            rel="preload"
-            href="style/style.css"
-            as="style"
-            onload="this.onload=null;this.rel='stylesheet'"
-        />
-        <noscript><link rel="stylesheet" href="style/style.css" /></noscript>
-
-        <!-- Load icons after critical content -->
-        <link
-            rel="preload"
-            href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
-            as="style"
-            onload="this.onload=null;this.rel='stylesheet'"
-        />
-        <noscript
-            ><link
-                rel="stylesheet"
-                href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
-        /></noscript>
-
-        <meta name="title" content="@the-indian-dev's website" />
-        <meta
-            name="description"
-            content="@the-indian-dev (Ritabrata Das) is an Epic programmer based in India"
-        />
-        <meta property="og:title" content="@the-indian-dev's website" />
-        <meta property="og:description" content="Check out Ritabrata's epic website :)" />
-        <meta property="og:image" content="https://avatars.githubusercontent.com/u/70189264?v=4" />
-        <!-- Chrome, Firefox OS and Opera -->
-        <meta name="theme-color" content="#941b1b" />
-        <!-- Windows Phone -->
-        <meta name="msapplication-navbutton-color" content="#941b1b" />
-        <!-- iOS Safari -->
-        <meta name="format-detection" content="telephone=no" />
-        <!-- Not sus -->
-        <!-- Microsoft Clarity -->
-        <script type="text/javascript">
-            (function (c, l, a, r, i, t, y) {
-                c[a] =
-                    c[a] ||
-                    function () {
-                        (c[a].q = c[a].q || []).push(arguments);
-                    };
-                t = l.createElement(r);
-                t.async = 1;
-                t.src = "https://www.clarity.ms/tag/" + i;
-                y = l.getElementsByTagName(r)[0];
-                y.parentNode.insertBefore(t, y);
-            })(window, document, "clarity", "script", "b1bzrklk6k");
-        </script>
-
-
-        <!-- Microsoft Bing Verification-->
-        <meta name="msvalidate.01" content="28796ADCC5E5816CBDEDAD851C9F4783" />
-    </head>
-    <body>
-        <div class="page-1">
-            <div class="section level">
-                <span class="title level-left top is-mobile" style="font-size: 4em">
-                    Hello There!
-                    <figure class="image is-64x64 is-mobile">
-                        <img src="assets/wave.webp" alt="Hand waving animation" decoding="async" />
-                    </figure>
-                </span>
-            </div>
-            <div class="section main-intro">
-                <span
-                    >I am <strong class="name"><em>Ritabrata Das</em></strong
-                    ><br />
-                </span>
-                <div id="typed-strings">
-                    <p>and I am a <strong class="emf">passionate</strong> programmer</p>
-                    <p>and I am an <strong class="emf">Arch</strong> Linux user</p>
-                    <p>
-                        and I am an average
-                        <strong class="noto-serif-bengali emf">বাঙালি</strong> man
+    <section class="hero is-fullheight">
+        <div class="hero-body">
+            <div class="container has-text-centered-desktop has-text-left-mobile">
+                <figure class="image is-96x96 is-inline-block yantra-image">
+                    <img src="asset/img/yantra.png" alt="Saraswati Yantra">
+                </figure>
+                <div class="greeting my-6">
+                    <h1 class="title is-size-2-mobile main-greeting">
+                        <span class="font-ultralight">Hello there
+                            <img src="asset/img/wave.gif" alt="Waving hand" class="wave-gif">
+                        </span>
+                        <br>
+                        <span class="font-ultralight">I am <span class="font-ultralight-italic">Ritabrata Das</span></span>
+                    </h1>
+                </div>
+                <div class="bio">
+                    <p class="subtitle is-size-4-desktop is-size-5-mobile">
+                        Minimalist Systems Engineer - I love building software from scratch.
+                        <br class="is-hidden-mobile">
+                        Believe in releasing fast and iterating often.
                     </p>
-                    <p>and I am an epic devotee of Maa <strong class="emf">Durga</strong></p>
                 </div>
-                <span id="typed"></span>
-            </div>
-            <div class="social-media">
-                <a href="https://github.com/the-indian-dev"
-                    ><i class="uil uil-github social-media-icon"></i
-                ></a>
-                <a href="https://discord.com/users/557467854266433537"
-                    ><i class="uil uil-discord social-media-icon"></i
-                ></a>
-                <a href="mailto:theindiandev@theindiandev.in"
-                    ><i class="uil uil-envelope social-media-icon"></i
-                ></a>
-                <a href="https://t.me/theindiandev"
-                    ><i class="uil uil-telegram-alt social-media-icon"></i
-                ></a>
-            </div>
-        </div>
-        <div class="page-2">
-            <div id="page2-1">
-                <div class="section level">
-                    <span class="title level-left top is-mobile" style="font-size: 3em">
-                        About Me
-                        <figure class="image is-48x48 is-mobile">
-                            <img
-                                src="assets/emoji.webp"
-                                alt="Thinking Emoji"
-                                loading="lazy"
-                                decoding="async"
-                            />
-                        </figure>
-                    </span>
+                <div class="buttons social-buttons my-5">
+                    <a href="mailto:theindiandev@theindiandev.in" class="button is-black social-icon" aria-label="Email">
+                        <span class="icon">
+                            <i class="fa-regular fa-envelope"></i>
+                        </span>
+                    </a>
+                    <a href="https://discord.gg/qEYbuWu5NE" class="button is-black social-icon" aria-label="Discord">
+                        <span class="icon">
+                            <i class="fab fa-discord"></i>
+                        </span>
+                    </a>
+                    <a href="https://github.com/the-indian-dev" class="button is-black social-icon" aria-label="GitHub">
+                        <span class="icon">
+                            <i class="fab fa-github"></i>
+                        </span>
+                    </a>
+                    <a href="https://t.me/theindiandev" class="button is-black social-icon" aria-label="Telegram">
+                        <span class="icon">
+                            <i class="fab fa-telegram"></i>
+                        </span>
+                    </a>
                 </div>
-                <div class="section">
-                    <span>
-                        <ul class="content is-medium">
-                            I am an 18 year old guy from Odisha,
-                            India. I am currently studying
-                            engineering. I am an Arch Linux
-                            elitist and despise SaaS and AWS
-                            slaves. I have been using Linux since
-                            I was 10 years old. (started with
-                            kali like a skid)
-                        </ul>
-                    </span>
-                </div>
-            </div>
-            <div id="page2-2">
-                <div class="section level">
-                    <span class="title level-left top is-mobile" style="font-size: 3em">
-                        Hobbies
-                        <img
-                            src="/assets/game.webp"
-                            alt="Gaming Icon"
-                            style="height: 50px; width: 50px"
-                            loading="lazy"
-                            decoding="async"
-                        />
-                    </span>
-                </div>
-                <div class="section">
-                    <ul class="content is-medium">
-                        My free time is usually spent
-                        programming or tinkering computers, I
-                        like building epic and random shit.
-                        Other times, I am playing games like
-                        Touhou, Geometry Dash, YSFlight,
-                        Minecraft... I also enjoy solving
-                        Physics problems and listening to
-                        music. My favourite artists are
-                        Kendrick Lamar, ZUN, F-777, Waterflame,
-                        Kordhell.
-                    </ul>
+                <div class="gpg-key mt-6">
+                    <p class="is-size-6 gpg-text">
+                        My public GPG key in case anyone wants to send me nu<span class="spoiler">k</span>es :
+                    </p>
+                    <a href="public/ritabrata.gpg" class="public-key">0946 5185 B05D CEFD 2D73  DA9D D03A EB4F 9545 997A</a>
                 </div>
             </div>
         </div>
-        <footer class="footer">
-            <div class="content has-text-centered">
-                <span>
-                    <img
-                        src="/assets/om.webp"
-                        alt="Om"
-                        class="emoji"
-                        loading="lazy"
-                        decoding="async"
-                    />
-                    <img
-                        src="/assets/flag.webp"
-                        alt="Indian flag"
-                        class="emoji"
-                        loading="lazy"
-                        decoding="async"
-                    />
-                    <img
-                        src="/assets/heart.webp"
-                        alt="Heart"
-                        class="emoji"
-                        loading="lazy"
-                        decoding="async"
-                    />
-                </span>
-                <br />
-                <span>Did I mention that I use Arch, BTW!</span>
-            </div>
-            <a rel="me" href="https://mastodon.social/@theindiandev" style="display: none"
-                >Mastodon</a
-            >
-        </footer>
-        <!-- Load typing animation immediately -->
-        <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-        <script src="js/script.js"></script>
-    </body>
+    </section>
+</body>
 </html>

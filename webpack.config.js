@@ -1,33 +1,34 @@
 const path = require('path');
+const glob = require('glob');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { PurgeCSSPlugin } = require('purgecss-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const BeastiesPlugin = require('beasties-webpack-plugin');
-const glob = require('glob');
-
 
 module.exports = {
+  // Define separate entry points for your JS and CSS.
+  // This allows Webpack to process them independently.
   entry: {
-    main: './js/script.js',
-    styles: ['./style/style.css', './style/bulma.min.css']
+    main: './script/main.js',
+    styles: './style/style.css',
   },
   output: {
+    // Use contenthash for browser caching (cache busting).
     filename: 'js/[name].[contenthash:8].js',
-    chunkFilename: 'js/[name].[contenthash:8].chunk.js',
-    assetModuleFilename: 'assets/[name].[contenthash:8][ext]',
     path: path.resolve(__dirname, 'dist'),
-    clean: true,
-    publicPath: '/',
+    // All assets will be output with hashes for caching.
+    assetModuleFilename: 'asset/[name].[contenthash:8][ext]',
+    clean: true, // Clean the dist folder before each build.
   },
-  mode: 'production', // Use production mode for minification and optimizations
+  mode: 'production',
   module: {
     rules: [
       {
         test: /\.css$/,
         use: [
           MiniCssExtractPlugin.loader,
+          // css-loader will resolve @import and url() paths in your CSS.
           'css-loader',
         ],
       },
@@ -35,13 +36,18 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
+      // The final, optimized CSS file.
       filename: 'style/[name].[contenthash:8].css',
-      chunkFilename: 'style/[id].[contenthash:8].css',
     }),
+
+    // This plugin will generate the final index.html in the dist folder.
     new HtmlWebpackPlugin({
-      template: './index.html',
+      template: './index.html', // Use your source HTML as a template.
       filename: 'index.html',
-      inject: true,
+      // IMPORTANT: Inject both the final JS and CSS bundles.
+      // It will automatically replace your source <link> and <script> tags.
+      inject: 'body',
+      chunks: ['main', 'styles'], // Specify which bundles to inject.
       minify: {
         removeComments: true,
         collapseWhitespace: true,
@@ -55,88 +61,41 @@ module.exports = {
         minifyURLs: true,
       },
     }),
+
+    // PurgeCSS now reliably scans your HTML for classes.
     new PurgeCSSPlugin({
-      paths: glob.sync(`${path.join(__dirname, '**/*')}`, { nodir: true }),
+      paths: glob.sync(`${path.join(__dirname, 'index.html')}`, { nodir: true }),
+      // Use smart, broad regular expressions to safelist frameworks
+      // instead of a fragile, hardcoded list.
       safelist: {
-        standard: ['html', 'body', /^uil-/, 'is-mobile', /^page-/, /^section/, 'hello', 'title', 'level-left', 'level', 'waving-hand', 'top'],
-        deep: [/typed/, /social-media/, /level/, /bulma/, /hello/, /waving/, /title/],
-        greedy: [/title$/, /level$/, /hello$/, /emoji$/, /hand$/, /^span/],
+        standard: ['html', 'body'], // Essential for any webpage.
+        deep: [
+            /^is-/,      // Safelists all Bulma 'is-*' classes.
+            /^has-/,     // Safelists all Bulma 'has-*' classes.
+            /^fa-/,      // Safelists all Font Awesome 'fa-*' classes from the CDN.
+        ],
       },
-      fontFace: true,
+      fontFace: true, // CRITICAL: This preserves your @font-face rules.
       keyframes: true,
       variables: true,
-      rejected: false,
     }),
+
+    // Explicitly copy all asset folders that are not directly handled by CSS.
+    // This is the most reliable way to ensure your assets are in the final build.
     new CopyWebpackPlugin({
       patterns: [
-        { 
-          from: 'assets', 
-          to: 'assets',
-          globOptions: {
-            ignore: ['**/.DS_Store'],
-          },
-        },
-        { from: 'img', to: 'img' },
+        { from: 'asset', to: 'asset' },     // Copies all fonts and images.
+        { from: 'public', to: 'public' },   // Copies your GPG key.
         { from: 'favicon.ico', to: 'favicon.ico' },
         { from: 'robots.txt', to: 'robots.txt' },
       ],
     }),
-    new BeastiesPlugin({
-      // Inline critical CSS and lazy-load the rest
-      preload: 'swap',
-      // Remove inlined styles from external stylesheets
-      pruneSource: true,
-      // Compress the inlined critical CSS
-      compress: true,
-      // Log which rules are inlined
-      logLevel: 'info',
-      // Fonts handling
-      fonts: true,
-      // External stylesheets handling
-      external: true,
-      // Inline styles handling
-      inlineThreshold: 0,
-    }),
-
   ],
   optimization: {
-    moduleIds: 'deterministic',
-    splitChunks: {
-      chunks: 'all',
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          chunks: 'all',
-          priority: 20,
-        },
-        common: {
-          name: 'common',
-          minChunks: 2,
-          chunks: 'all',
-          priority: 10,
-          reuseExistingChunk: true,
-        },
-      },
-    },
-    runtimeChunk: 'single',
     minimize: true,
     minimizer: [
-      '...', // Keep default JS minimizer (Terser)
-      new CssMinimizerPlugin({
-        minimizerOptions: {
-          preset: [
-            'default',
-            {
-              discardComments: { removeAll: true },
-              normalizeWhitespace: true,
-              cssDeclarationSorter: true,
-              mergeRules: true,
-              mergeSemantically: true,
-            },
-          ],
-        },
-      }),
+      '...', // Keep default JS minimizer (Terser).
+      new CssMinimizerPlugin(),
     ],
   },
 };
