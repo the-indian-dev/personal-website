@@ -9,14 +9,16 @@
 /* ---- Font Imports ---- */
 @font-face {
     font-family: 'PPEditorialNew';
-    src: url('../asset/font/PPEditorialNew-Regular.otf') format('opentype');
+    src: url('../asset/font/PPEditorialNew-Regular.woff2');
     font-weight: normal; /* 400 */
     font-style: normal;
 }
+
+/*
 @font-face {
     font-family: 'PPEditorialNew';
     src: url('../asset/font/PPEditorialNew-Ultrabold.otf') format('opentype');
-    font-weight: bold; /* 700 */
+    font-weight: bold; /* 700
     font-style: normal;
 }
 @font-face {
@@ -25,9 +27,12 @@
     font-weight: 200;
     font-style: normal;
 }
+
+*/
+
 @font-face {
     font-family: 'PPEditorialNew';
-    src: url('../asset/font/PPEditorialNew-UltralightItalic.otf') format('opentype');
+    src: url('../asset/font/PPEditorialNew-UltralightItalic.woff2');
     font-weight: 200;
     font-style: italic;
 }
@@ -49,7 +54,7 @@ html, body {
 
 .yantra-image { margin-bottom: 2rem; }
 @media screen and (max-width: 768px) {
-    .yantra-image.image { width: 64px; height: 64px; }
+    .yantra-image.image { width: 96px; height: 96px; }
 }
 
 /* Inline waving hand GIF */
