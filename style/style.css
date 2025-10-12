@@ -3,7 +3,7 @@
 :root {
     --accent-color: #920a0d;
     --background-color: #000000;
-    --text-color: #f1d094;
+    --text-color: #f3d8a6;
 }
 
 /* ---- Font Imports ---- */
@@ -42,7 +42,10 @@ html, body {
     font-family: 'PPEditorialNew', 'Times New Roman', serif;
     color: var(--text-color);
 }
-.hero { color: var(--text-color); }
+.hero { 
+    color: var(--text-color);
+}
+
 .title, .subtitle { color: var(--text-color); font-weight: normal; }
 .main-greeting.title { line-height: 1.2; }
 
@@ -123,4 +126,64 @@ html {
 ::-webkit-scrollbar-thumb {
     background-color: var(--accent-color);
     border-radius: 10px;
+}
+
+
+.about-me-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.about-me-paragraph {
+    width: 60%;
+    padding-right: 5%;
+}
+
+.alice-dance{
+    height: 43vh;
+}
+
+.about-me {
+        padding: 5%;
+    }
+
+.about-me-title {
+    padding-bottom: 5%;
+}
+
+@media screen and (max-width: 768px) {
+    .about-me-paragraph {
+        padding: 0%;
+        width: 100%;
+        justify-content: left;
+    }
+}
+
+.link {
+    color: var(--accent-color);
+}
+
+.link, .link:link, .link:visited {
+  color: var(--accent-color);
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 4px; /* The distance between text and underline */
+}
+
+.link::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  background-image: linear-gradient(90deg, var(--accent-color), var(--accent-color)); /* underline color */
+  background-size: 0 2px; /* vertical size of underline */
+  background-repeat: no-repeat;
+  background-position: left bottom; /* start position of underline */
+  transition: background-size .3s ease-in; /* duration and timing style of animation */
+}
+
+a:hover::before {
+  background-size: 100% 2px;
 }
