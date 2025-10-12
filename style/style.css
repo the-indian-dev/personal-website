@@ -1,168 +1,189 @@
-.noto-serif-bengali {
-    font-family: "Noto Serif Bengali", serif;
-    font-optical-sizing: auto;
-    font-weight: 900;
+@import "bulma.min.css";
+
+:root {
+    --accent-color: #920a0d;
+    --background-color: #000000;
+    --text-color: #f3d8a6;
+}
+
+/* ---- Font Imports ---- */
+@font-face {
+    font-family: 'PPEditorialNew';
+    src: url('../asset/font/PPEditorialNew-Regular.woff2');
+    font-weight: normal; /* 400 */
     font-style: normal;
-    font-variation-settings: "wdth" 100;
 }
-.top {
-    padding-top: 2em;
+
+/*
+@font-face {
+    font-family: 'PPEditorialNew';
+    src: url('../asset/font/PPEditorialNew-Ultrabold.otf') format('opentype');
+    font-weight: bold; /* 700
+    font-style: normal;
 }
-.name {
-    background: #c6ffdd;
-    background: -webkit-linear-gradient(to right, #ff0000, #ffc107);
-    background: linear-gradient(90deg, #ff0000, #ffc107);
-    background-size: 100%;
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -moz-text-fill-color: transparent;
+@font-face {
+    font-family: 'PPEditorialNew';
+    src: url('../asset/font/PPEditorialNew-Ultralight.otf') format('opentype');
+    font-weight: 200;
+    font-style: normal;
 }
-.emf {
-    background: #06beb6;
-    background: -webkit-linear-gradient(to right, #36d1dc, #5b86e5);
-    background: linear-gradient(90deg, #36d1dc, #5b86e5);
-    background-size: 100%;
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -moz-text-fill-color: transparent;
+
+*/
+
+@font-face {
+    font-family: 'PPEditorialNew';
+    src: url('../asset/font/PPEditorialNew-UltralightItalic.woff2');
+    font-weight: 200;
+    font-style: italic;
 }
-.page-1 {
-    background-image: url("/assets/durga-mobile.webp");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: right top;
-    background-size: 30%;
-    height: 100vh;
+
+html, body {
+    background-color: var(--background-color);
+    font-family: 'PPEditorialNew', 'Times New Roman', serif;
+    color: var(--text-color);
 }
-.social-media {
-    font-size: 35px;
+.hero { 
+    color: var(--text-color);
+}
+
+.title, .subtitle { color: var(--text-color); font-weight: normal; }
+.main-greeting.title { line-height: 1.2; }
+
+/* Font Variation Helpers */
+.font-ultralight { font-weight: 200; font-style: normal; }
+.font-ultralight-italic { font-weight: 200; font-style: italic; }
+
+.button.is-black.social-icon { background-color: transparent; border: none; }
+
+.yantra-image { margin-bottom: 2rem; }
+@media screen and (max-width: 768px) {
+    .yantra-image.image { width: 96px; height: 96px; }
+}
+
+/* Inline waving hand GIF */
+.wave-gif { height: 1em; vertical-align: baseline; margin: 0 0.2em; }
+
+/* Social Media Icons */
+.social-icon .icon i {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    transition: color 0.2s ease-in-out;
+}
+
+.social-icon:hover .icon i { color: var(--accent-color); }
+
+/* GPG Key Spoiler Effect */
+.gpg-text .spoiler {
+    color: var(--accent-color);
+    background-color: var(--accent-color);
+    
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+.gpg-text .spoiler:hover { color: var(--text-color); background-color: transparent; }
+
+.public-key {
+    color: var(--text-color);
+    font-family: monospace;
+    word-break: break-all;   
     text-decoration: none;
-    margin-left: 5%;
-    display: flex;
+    margin-top: 0.5rem;
+    transition: color 0.2s ease;
 }
-.social-media-icon {
-    margin-right: 0.5em;
+
+.public-key:hover {
+    color: var(--accent-color);
 }
-.main-intro {
-    height: 5em;
-    font-size: 2.5em;
-}
-.uil {
-    color: black;
-    padding-left: 1%;
-}
-[data-theme="dark"],
-.uil {
-    color: white;
-}
-@media all and (min-width: 960px) {
-    .page-1 {
-        background-image: url("/assets/durga.webp");
+
+
+@media screen and (min-width: 1024px) {
+    .main-greeting.title {
+        font-size: 4.2rem;
     }
-}
-@media all and (min-width: 0px) and (max-width: 959px) {
-    .hello {
-        font-size: 3em;
+    .bio .subtitle {
+        font-size: 2rem;
     }
-    .social-media {
-        font-size: 30px;
-        margin: 0%;
-        width: 100%;
+    .social-buttons {
         justify-content: center;
     }
-    .social-media-icon {
-        margin: 2vh;
-        padding-right: 2vh;
-    }
-    .top {
-        padding-top: 0em;
-    }
-    .page-1 {
-        background-size: 100%;
-    }
-    .uil {
-        padding-left: 10%;
-        font-size: 40px;
-    }
-    .main-intro {
-        height: 8em;
-        font-size: 2em;
-    }
 }
 
-/* Hide page-2 initially for faster loading */
-.page-2 {
-    display: none;
-    opacity: 0;
-    transform: translateY(20px);
-    transition:
-        opacity 0.5s ease-in,
-        transform 0.5s ease-in;
-}
-.page-2.visible {
-    opacity: 1;
-    transform: translateY(0);
+/* For Firefox */
+html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-color) var(--background-color);
 }
 
-.waving-hand {
-    font-size: 4em;
+::-webkit-scrollbar {
+    width: 7px;
 }
 
-.lis-item {
-    padding-bottom: 0.5%;
+::-webkit-scrollbar-track {
+    background: var(--background-color);
 }
 
-.page-2 {
+::-webkit-scrollbar-thumb {
+    background-color: var(--accent-color);
+    border-radius: 10px;
+}
+
+
+.about-me-section {
     display: flex;
+    flex-direction: row;
     justify-content: center;
 }
 
-.page-2.visible {
-    animation: fadeIn 0.5s ease-in forwards;
+.about-me-paragraph {
+    width: 60%;
+    padding-right: 5%;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+.alice-dance{
+    height: 43vh;
 }
 
-.emoji {
-    height: 30px;
-    width: 30px;
-}
-
-.uil {
-    color: black;
-    padding-left: 1%;
-    transition: color 0.3s ease;
-}
-
-[data-theme="dark"] .uil,
-.uil {
-    color: white;
-}
-@media all and (min-width: 960px) {
-    ::-webkit-scrollbar {
-        height: 50px;
-        width: 5px;
-        background: #000;
+.about-me {
+        padding: 5%;
     }
 
-    ::-webkit-scrollbar-thumb {
-        background: #4a4a4a;
-        -webkit-border-radius: 1ex;
-        -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
-    }
-    .social-media-icon:hover {
-        color: #a8b8d0;
-        transition: color 0.3s ease;
+.about-me-title {
+    padding-bottom: 5%;
+}
+
+@media screen and (max-width: 768px) {
+    .about-me-paragraph {
+        padding: 0%;
+        width: 100%;
+        justify-content: left;
     }
 }
-@media all and (min-width: 0px) and (max-width: 959px) {
-    /* Tablets and stuff. Disable excessive padding */
-    .page-2 {
-        flex-direction: column;
-    }
+
+.link {
+    color: var(--accent-color);
+}
+
+.link, .link:link, .link:visited {
+  color: var(--accent-color);
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 4px; /* The distance between text and underline */
+}
+
+.link::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  background-image: linear-gradient(90deg, var(--accent-color), var(--accent-color)); /* underline color */
+  background-size: 0 2px; /* vertical size of underline */
+  background-repeat: no-repeat;
+  background-position: left bottom; /* start position of underline */
+  transition: background-size .3s ease-in; /* duration and timing style of animation */
+}
+
+a:hover::before {
+  background-size: 100% 2px;
 }
