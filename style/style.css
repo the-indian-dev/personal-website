@@ -3,7 +3,7 @@
 :root {
     --accent-color: #920a0d;
     --background-color: #000000;
-    --text-color: #f3d8a6;
+    --text-color: #f3d090;
 }
 
 /* ---- Font Imports ---- */
@@ -99,7 +99,7 @@ html, body {
 
 @media screen and (min-width: 1024px) {
     .main-greeting.title {
-        font-size: 4.2rem;
+        font-size: 10vh;
     }
     .bio .subtitle {
         font-size: 2rem;
