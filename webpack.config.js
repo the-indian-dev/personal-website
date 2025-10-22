@@ -86,6 +86,7 @@ module.exports = {
       patterns: [
         { from: 'asset', to: 'asset' },     // Copies all fonts and images.
         { from: 'public', to: 'public' },   // Copies your GPG key.
+        { from: 'img', to: 'img' },   // ysfhq sign
         { from: 'favicon.ico', to: 'favicon.ico' },
         { from: 'robots.txt', to: 'robots.txt' },
       ],
