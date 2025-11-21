@@ -44,6 +44,8 @@ html, body {
 }
 .hero { 
     color: var(--text-color);
+    z-index: 10;
+    position: relative;
 }
 
 .title, .subtitle { color: var(--text-color); font-weight: normal; }
@@ -62,6 +64,7 @@ html, body {
 
 /* Inline waving hand GIF */
 .wave-gif { height: 1em; vertical-align: baseline; margin: 0 0.2em; }
+
 
 /* Social Media Icons */
 .social-icon .icon i {
@@ -186,4 +189,51 @@ html {
 
 a:hover::before {
   background-size: 100% 2px;
+}
+
+.yin-yang-wrapper {
+    position: absolute;
+    top: 100vh;
+    right: 0;
+    transform: translate(30%, -75%);
+    z-index: 0;
+    pointer-events: none; /* Allows clicking through it */
+}
+
+/* The ASCII text styling */
+.yin-yang-ascii {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 10pt;
+    font-weight: bold;
+    color: var(--accent-color);
+    background-color: transparent;
+    border: none;
+    opacity: 0.9;
+    user-select: none;
+    letter-spacing: 1.5px;
+    z-index: -1;
+
+    /* animation */
+    animation: rotate-center 15s linear infinite;
+
+    /* hw accln */
+    will-change: transform;
+}
+
+@keyframes rotate-center {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.footer-badge {
+	display: flex;
+	justify-content: center;
+}
+
+.badge {
+	padding-left: 1%;
+	height: 7vh;
 }
