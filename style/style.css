@@ -6,6 +6,16 @@
     --text-color: #f3d090;
 }
 
+@media (prefers-color-scheme: light) {
+	:root {
+	    --accent-color: #920a0d;
+	    --background-color: #faf3c3;
+	    --text-color: #920a0d;
+	}
+}
+
+
+
 /* ---- Font Imports ---- */
 @font-face {
     font-family: 'PPEditorialNew';
