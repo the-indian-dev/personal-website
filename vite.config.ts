@@ -3,7 +3,6 @@ import { minify } from "html-minifier-terser";
 import { cpSync } from "node:fs";
 
 export default defineConfig({
-  publicDir: false,
   plugins: [
     {
       name: "copy-public-directory",
