@@ -5,10 +5,11 @@ import { cpSync } from "node:fs";
 export default defineConfig({
   plugins: [
     {
-      name: "copy-public-directory",
+      name: "copy-static-directories",
       apply: "build",
       closeBundle() {
         cpSync("public", "dist/public", { recursive: true });
+        cpSync("img", "dist/img", { recursive: true });
       },
     },
     {

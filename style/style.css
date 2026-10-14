@@ -66,8 +66,8 @@ html, body {
     width: 40%;
     overflow: hidden;
     background: #0a3520;
-    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 25%);
-    mask-image: linear-gradient(90deg, transparent 0, #000 25%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 40%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 40%);
 }
 
 #pixi-container,

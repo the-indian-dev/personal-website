@@ -109,7 +109,7 @@ class FishSkin {
 
 // --- Pond planting ---
 const ROCK_COUNT = 7;
-const LILYPAD_COUNT = 14;
+const LILYPAD_COUNT = 18;
 const LOTUS_COUNT = 8;
 
 // --- Look tunables ---
@@ -565,7 +565,24 @@ function clamp(value: number, min: number, max: number): number {
   const wagAmpFrac = 0.08; // peak wag displacement, as a fraction of texture width
   const wagFreq = 6; // radians per unit of u
   const wagSpeed = 3;
-  const wallMargin = isPhone ? -90 : 50; // how close to an edge before steering away
+  const wallMargin = 50;
+  let swimLeft = 0;
+  let swimTop = 0;
+  let swimRight = app.screen.width;
+  let swimBottom = app.screen.height;
+
+  function updateSwimBounds(width: number, height: number) {
+    // Small ponds show a window into a larger swimming area, with room to
+    // finish a turn offscreen before swimming back through the visible pond.
+    const smallPond = Math.min(width, height) < onScreenLen * 4;
+    const swimWidth = smallPond ? Math.max(width, onScreenLen * 5) : width;
+    const swimHeight = smallPond ? Math.max(height, onScreenLen * 5) : height;
+    swimLeft = (width - swimWidth) / 2;
+    swimTop = (height - swimHeight) / 2;
+    swimRight = width - swimLeft;
+    swimBottom = height - swimTop;
+  }
+  updateSwimBounds(app.screen.width, app.screen.height);
 
   class Fish {
     readonly mesh: Mesh;
@@ -607,8 +624,8 @@ function clamp(value: number, min: number, max: number): number {
       this.heading = Math.random() * Math.PI * 2;
 
       // Start somewhere in the tank with the body laid out straight behind the head
-      const startX = wallMargin + Math.random() * (width - wallMargin * 2);
-      const startY = wallMargin + Math.random() * (height - wallMargin * 2);
+      const startX = Math.random() * width;
+      const startY = Math.random() * height;
       const hx = Math.cos(this.heading);
       const hy = Math.sin(this.heading);
       for (let i = 0; i < SPINE_SLICES; i++) {
@@ -616,7 +633,7 @@ function clamp(value: number, min: number, max: number): number {
         this.spineX[i] = startX - hx * back;
         this.spineY[i] = startY - hy * back;
       }
-      this.pickTarget(width, height);
+      this.pickTarget();
 
       const positions = new Float32Array(SPINE_SLICES * 4);
       for (let i = 0; i < SPINE_SLICES; i++) {
@@ -653,15 +670,30 @@ function clamp(value: number, min: number, max: number): number {
       this.shadow.position.set(SHADOW_OFFSET_X, SHADOW_OFFSET_Y);
     }
 
-    pickTarget(width: number, height: number) {
-      this.targetX = wallMargin + Math.random() * (width - wallMargin * 2);
-      this.targetY = wallMargin + Math.random() * (height - wallMargin * 2);
+    pickTarget() {
+      const last = SPINE_SLICES - 1;
+      // Prefer a longer swim between turns, especially in a narrow viewport.
+      for (let attempt = 0; attempt < 12; attempt++) {
+        this.targetX = swimLeft + wallMargin +
+          Math.random() * (swimRight - swimLeft - wallMargin * 2);
+        this.targetY = swimTop + wallMargin +
+          Math.random() * (swimBottom - swimTop - wallMargin * 2);
+        if (Math.hypot(this.targetX - this.spineX[last],
+          this.targetY - this.spineY[last]) >= onScreenLen * 2) break;
+      }
     }
 
-    update(dt: number, time: number, width: number, height: number) {
+    update(dt: number, time: number) {
       const last = SPINE_SLICES - 1;
       const headX = this.spineX[last];
       const headY = this.spineY[last];
+
+      // A destination inside the minimum turning circle cannot be reached by
+      // steering alone. Move on before it traps the fish in a perpetual orbit.
+      const arrivalRadius = Math.max(60, this.speed / this.turnRate * 1.5);
+      if (Math.hypot(this.targetX - headX, this.targetY - headY) < arrivalRadius) {
+        this.pickTarget();
+      }
 
       // Seek the current target
       let sdx = this.targetX - headX;
@@ -673,16 +705,13 @@ function clamp(value: number, min: number, max: number): number {
       // Soft wall repulsion (steer away from the edges)
       let ax = 0;
       let ay = 0;
-      if (headX < wallMargin) ax += 1 - headX / wallMargin;
-      if (headX > width - wallMargin) ax -= 1 - (width - headX) / wallMargin;
-      if (headY < wallMargin) ay += 1 - headY / wallMargin;
-      if (headY > height - wallMargin) ay -= 1 - (height - headY) / wallMargin;
+      if (headX < swimLeft + wallMargin) ax += 1 - (headX - swimLeft) / wallMargin;
+      if (headX > swimRight - wallMargin) ax -= 1 - (swimRight - headX) / wallMargin;
+      if (headY < swimTop + wallMargin) ay += 1 - (headY - swimTop) / wallMargin;
+      if (headY > swimBottom - wallMargin) ay -= 1 - (swimBottom - headY) / wallMargin;
 
       const desired = Math.atan2(sdy + ay * 2, sdx + ax * 2);
       this.heading = lerpAngle(this.heading, desired, this.turnRate * dt);
-
-      // Pick a fresh destination once we get close
-      if (seekDist < 60) this.pickTarget(width, height);
 
       // Swim forward (the head leads)
       this.spineX[last] += Math.cos(this.heading) * this.speed * dt;
@@ -811,6 +840,8 @@ function clamp(value: number, min: number, max: number): number {
     if (app.screen.width !== lastW || app.screen.height !== lastH) {
       lastW = app.screen.width;
       lastH = app.screen.height;
+      updateSwimBounds(lastW, lastH);
+      for (const f of fish) f.pickTarget();
       rocks.layout(lastW, lastH);
       lilypads.layout(lastW, lastH);
       lotuses.layout(lastW, lastH, lilypads, placementRandom);
@@ -818,7 +849,7 @@ function clamp(value: number, min: number, max: number): number {
     }
 
     for (const f of fish) {
-      f.update(dt, time, app.screen.width, app.screen.height);
+      f.update(dt, time);
     }
 
     underwaterPass.update(time);
